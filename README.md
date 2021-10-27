@@ -2,7 +2,7 @@
 
 lamboxproject is an Angular PWA powered by Firebase.
 
-- [Live Demo](https://lamboxproject.wep.app/)
+- [Live Demo](https://lamboxproject.web.app/)
 
 ## Features
 
