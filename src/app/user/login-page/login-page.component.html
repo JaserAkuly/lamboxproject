@@ -1,0 +1,47 @@
+<div class="padding center">
+  <div *ngIf="!(afAuth.authState | async)">
+    <h1>Login</h1>
+
+    <button mat-raised-button appGoogleSignin>
+      <img src="assets/google-logo.svg" /> Login with Google
+    </button>
+
+    <mat-list>
+      <mat-list-item>🗩 write and read comments</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>💪 write your motivation in bio</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>🤙 share you profile</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>🖤 save cars (comming soon)</mat-list-item>
+    </mat-list>
+  
+    <!--
+    <h5>OR</h5>
+
+    <app-email-login></app-email-login>
+    -->
+  </div>
+
+  <div *ngIf="afAuth.authState | async as user" class="logout">
+    <img class="avatar" [src]="user.photoURL || 'assets/defaultUser.jpg'">
+    
+    <p><strong>{{ user.displayName }}</strong></p>
+    <p>Logged in as <strong>{{ user.email }}</strong></p>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>shareable link</mat-label>
+      <input matInput value="https://lamboxproject.web.app/{{user.uid}}">
+      <button matSuffix mat-button mat-icon-button (click)="alertCopy()" cdkCopyToClipboard="https://lamboxproject.web.app/{{user.uid}}"><mat-icon>reply</mat-icon></button>
+    </mat-form-field>
+
+    <button mat-stroked-button (click)="afAuth.auth.signOut()">Logout</button>
+
+    <!--
+    <app-bio></app-bio>
+
+    <app-subscribe></app-subscribe> 
+    -->
+  </div>
+     
+</div>

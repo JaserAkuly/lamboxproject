@@ -1,0 +1,53 @@
+.rainbow {
+  display: inline;
+  background-image: radial-gradient(circle farthest-corner at 0 0,#ff61d3 25%,#b318ff 45%,#00f0ff 65%,#3cf7a2 85%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.box {
+  color: black;
+  background: radial-gradient(farthest-corner at 0 0,#4cfca7 2%,#fbc1f5 15%,#fff 20%);
+  border: 2px solid #000;
+  border-radius: 3px;
+  position: relative;
+  width: 100%;
+
+  &:before {
+  content: "";
+  background: #fbc1f5;
+  background: linear-gradient(45deg,#fbc1f5,#ffda57);
+  left: 16px;
+  top: 16px;
+  z-index: -2;
+
+  border: 2px solid #000;
+  border-radius: 3px;
+  box-sizing: content-box;
+  height: 100%;
+  position: absolute;
+  width: inherit;
+  }
+
+  &:after {
+  content: "";
+  background: #4cfca7;
+  background: linear-gradient(30deg,#4cfca7,#fff);
+  left: 8px;
+  top: 8px;
+  z-index: -1;
+
+  border: 2px solid #000;
+  border-radius: 3px;
+  box-sizing: content-box;
+  height: 100%;
+  position: absolute;
+  width: inherit;
+  }
+
+}
+
+.padding {
+  padding: 20px;
+}

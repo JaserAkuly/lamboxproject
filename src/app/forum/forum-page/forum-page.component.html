@@ -1,0 +1,61 @@
+<!--
+  <nz-back-top></nz-back-top>
+<nz-alert
+  nzType="error"
+  [nzMessage]="'OFFLINE' | translate"
+  nzShowIcon
+  *ngIf="!(isOnline$ | async)"
+></nz-alert>
+<nz-layout class="min-vh-100 ph7-l ph4-m">
+  <nz-page-header>
+    <nz-page-header-title>
+      <a [routerLink]="['/']">
+        <img src="./assets/treehole-icon-small.png" alt="logo" />
+        {{ "TITLE" | translate }}
+      </a>
+    </nz-page-header-title>
+    <nz-page-header-subtitle class="dn db-ns">
+      {{ "SUBTITLE" | translate }}
+    </nz-page-header-subtitle>
+    <nz-page-header-extra>
+      <a nz-button nzType="primary" [routerLink]="['/add']">
+        <i nz-icon nzType="edit"></i>{{ "ADD_YOUR_POST" | translate }}
+      </a>
+
+      <button
+        nz-button
+        nz-dropdown
+        [nzDropdownMenu]="languageMenu"
+        nzPlacement="bottomRight"
+      >
+        <i nz-icon nzType="global"></i>{{ "LANGUAGE" | translate }}
+      </button>
+      <nz-dropdown-menu #languageMenu="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          <li
+            nz-menu-item
+            [nzSelected]="(language$ | async) === 'en'"
+            (click)="setLanguage('en')"
+          >
+            English
+          </li>
+          <li
+            nz-menu-item
+            [nzSelected]="(language$ | async) === 'zh'"
+            (click)="setLanguage('zh')"
+          >
+            中文
+          </li>
+        </ul>
+      </nz-dropdown-menu>
+    </nz-page-header-extra>
+  </nz-page-header>
+  <nz-content>
+    <router-outlet></router-outlet>
+  </nz-content>
+  <nz-footer>
+    {{ "TITLE" | translate }} © {{ today | date: "yyyy" }}
+    <a href="https://github.com/xiongemi">https://github.com/xiongemi</a>
+  </nz-footer>
+</nz-layout>
+-->
