@@ -46,3 +46,10 @@ export const environment = {
 ```
 
 5.  Run `ng serve`.
+
+## Source
+
+This project was made from https://fireship.io video lessons and courses. A highly recommended platform.
+
+- [Code](https://github.com/codediodeio/angular-firestarter)
+- [Learn more](https://firestarter.fireship.io/)
