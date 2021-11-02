@@ -20,6 +20,8 @@ lamboxproject is an Angular PWA powered by Firebase.
 - `cd lamboxproject`
 - `npm install`
 
+![](./src/assets/social-preview.png)
+
 2.  Create a project at https://firebase.google.com/ and grab your web config:
 
 ![](./src/assets/firebase-config.png)
