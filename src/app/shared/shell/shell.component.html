@@ -5,9 +5,9 @@
       [opened]="false">
     <mat-toolbar routerLink="/" (click)="drawer.close()">Start line</mat-toolbar>
     <mat-nav-list>
-      <!--
+      
       <a mat-list-item routerLink="/forum" (click)="drawer.close()">🏁 fam</a>
-      -->
+      
       <a mat-list-item href="https://lamboxproject.etsy.com/" target="_blank">✨ shop</a>
       <a mat-list-item routerLink="/profile" *ngIf="!(afAuth.authState | async)" (click)="drawer.close()">🔑 login</a>
       <a mat-list-item routerLink="/profile" *ngIf="afAuth.authState | async as user" (click)="drawer.close()">✌️ profile</a>
@@ -29,9 +29,9 @@
       <span class="fill-space"></span>
 
       <div *ngIf="!(isHandset$ | async)">
-        <!--
+        
         <a mat-button routerLink="/forum">🏁 fam</a>
-        -->
+        
         <a mat-button href="https://latedrives.etsy.com/" target="_blank">🧰 shop</a>
         <a mat-button routerLink="/profile" *ngIf="!(afAuth.authState | async)">🔑 login</a>
         <a mat-button routerLink="/profile" *ngIf="afAuth.authState | async as user" >
