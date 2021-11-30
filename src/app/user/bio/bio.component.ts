@@ -1,97 +1,60 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FileI, UserI } from './../../collection/collection.model';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { finalize } from 'rxjs/operators';
-
+import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
 
 @Component({
   selector: 'app-bio',
   templateUrl: './bio.component.html',
-  styleUrls: ['./bio.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./bio.component.scss']
 })
 export class BioComponent implements OnInit {
 
-  public image: FileI;
-  public currentImage = 'https://picsum.photos/id/113/150/150';
-  public userData$: Observable<firebase.User>;
-  private filePath: string;
+  user: any = {};
+  message: string;
 
-
-  constructor(private afAuth: AngularFireAuth, private storage: AngularFireStorage) {
-    this.userData$ = afAuth.authState;
+  constructor() {
+    this.getProfile();
   }
 
+  ngOnInit() {}
 
-  public profileForm = new FormGroup({
-    displayName: new FormControl('', Validators.required),
-    email: new FormControl({ value: '', disabled: true }, Validators.required),
-    photoURL: new FormControl('', Validators.required),
-  });
+  getProfile(){
 
-  ngOnInit() {
-    this.userData$.subscribe(user => {
-      this.initValuesForm(user);
+    let userId = firebase.auth().currentUser.uid;
 
-    });
-  }
+    firebase.firestore().collection("users").doc(userId).get().then((documentSnapshot) => {
 
-  onSaveUser(user: UserI): void {
-    this.preSaveUserProfile(user, this.image);
-  }
+      this.user = documentSnapshot.data();
+      // this.user.displayName = this.user.firstName + " " + this.user.lastName;
+      this.user.id = documentSnapshot.id;
+      console.log(this.user);
 
-  private initValuesForm(user: UserI): void {
-    if (user.photoURL) {
-      this.currentImage = user.photoURL;
-    }
-
-    this.profileForm.patchValue({
-      displayName: user.displayName,
-      email: user.email,
-    });
-  }
-
-  handleImage(image: FileI): void {
-    this.image = image;
-  }
-
-
-
-
-  preSaveUserProfile(user: UserI, image?: FileI): void {
-    if (image) {
-      this.uploadImage(user, image);
-    } else {
-      this.saveUserProfile(user);
-    }
-  }
-
-  private uploadImage(user: UserI, image: FileI): void {
-    this.filePath = `images/${image.name}`;
-    const fileRef = this.storage.ref(this.filePath);
-    const task = this.storage.upload(this.filePath, image);
-    task.snapshotChanges()
-      .pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe(urlImage => {
-            user.photoURL = urlImage;
-            this.saveUserProfile(user);
-          });
-        })
-      ).subscribe();
-  }
-
-  private saveUserProfile(user: UserI) {
-    this.afAuth.auth.currentUser.updateProfile({
-      displayName: user.displayName,
-      photoURL: user.photoURL
+    }).catch((error) => {
+      console.log(error);
     })
-      .then(() => console.log('User updated!'))
-      .catch(err => console.log('Error', err));
+
+  }
+
+  update(){
+
+    this.message = "Updating...";
+
+    let userId = firebase.auth().currentUser.uid;
+    firebase.firestore().collection("users").doc(userId).update({
+      // first_name: this.user.displayName.split(' ')[0],
+      // last_name: this.user.displayName.split(' ')[1],
+      hobbies: this.user.hobbies,
+      interests: this.user.interests,
+      bio: this.user.bio,
+    }).then(() => {
+
+      this.message = "Bio updated successfully.";
+
+    }).catch((error) => {
+      console.log(error)
+    })
+
   }
 
 }

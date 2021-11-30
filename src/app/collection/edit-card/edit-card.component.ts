@@ -19,6 +19,7 @@ export class EditCardComponent implements OnInit {
   public editCardForm = new FormGroup({
     id: new FormControl('', Validators.required),
     titleCard: new FormControl('', Validators.required),
+    subtitleCard: new FormControl('', Validators.required),
     contentCard: new FormControl('', Validators.required),
     tagsCard: new FormControl('', Validators.required),
     imageCard: new FormControl('', Validators.required),
@@ -47,6 +48,7 @@ export class EditCardComponent implements OnInit {
     this.editCardForm.patchValue({
       id: this.card.id,
       titleCard: this.card.titleCard,
+      subtitleCard: this.card.subtitleCard,
       contentCard: this.card.contentCard,
       tagsCard: this.card.tagsCard
     });

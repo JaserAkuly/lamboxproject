@@ -3,12 +3,12 @@
 </div>
 
 <div *ngIf="afAuth.authState | async as user">
-  <button class="gradient" mat-raised-button (click)="openCommentDialog()">🏁 thought</button>
+  <button class="gradient" mat-raised-button (click)="openCommentDialog()">🏁 comment</button>
 
   <h1 class="padding">COMMENTS</h1>
 
   <mat-list>
-    <div mat-subheader>latest thoughts about this model...</div>
+    <div mat-subheader>latest comments about this post...</div>
     <mat-list-item *ngFor="let comment of commentsObservable | async" [routerLink]="comment.id">
       <mat-icon mat-list-icon>comment</mat-icon>
       <div mat-line>{{comment.ask}}</div>

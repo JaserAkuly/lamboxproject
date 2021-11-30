@@ -18,7 +18,7 @@ export class CollectionService {
     private afs: AngularFirestore,
     private storage: AngularFireStorage,
   ) {
-    this.cardsCollection = afs.collection<CardI>('cards');
+    this.cardsCollection = afs.collection<CardI>('cards', ref => ref.orderBy('subtitleCard', 'desc'));
   }
 
   public getAllCards(): Observable<CardI[]> {
@@ -58,6 +58,7 @@ export class CollectionService {
   private saveCard(card: CardI) {
     const cardObj = {
       titleCard: card.titleCard,
+      subtitleCard: card.subtitleCard,
       contentCard: card.contentCard,
       imageCard: this.downloadURL,
       fileRef: this.filePath,

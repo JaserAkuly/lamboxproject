@@ -8,8 +8,6 @@
       
       <a mat-list-item routerLink="/forum" (click)="drawer.close()">💪 fam</a>
       <a mat-list-item routerLink="/blog" (click)="drawer.close()">🔩 blog</a>
-      <a mat-list-item routerLink="/kanban" (click)="drawer.close()">🏁 kanban</a>
-
       <a mat-list-item href="https://lamboxproject.etsy.com/" target="_blank">🧰 shop</a>
       <a mat-list-item routerLink="/profile" *ngIf="!(afAuth.authState | async)" (click)="drawer.close()">🔑 login</a>
       <a mat-list-item routerLink="/profile" *ngIf="afAuth.authState | async as user" (click)="drawer.close()">✌️ profile</a>
@@ -25,7 +23,7 @@
       <span class="fill-space"></span>
       
       <span class="logo" routerLink="/">
-        <span style="font-family: 'DM Serif Text', serif">lambo</span><span style="font-family: 'Syncopate'">XPROJECT</span>
+        <span style="font-family: 'Corben', serif">lambo</span><span style="font-family: 'Gruppo'">XPROJECT</span>
       </span>
 
       <span class="fill-space"></span>
@@ -34,9 +32,7 @@
         
         <a mat-button routerLink="/">🏁 garage</a>
         <a mat-button routerLink="/forum">💪 fam</a>
-        <a mat-button routerLink="/blog">🔩 blog</a>
-        <a mat-button routerLink="/kanban">🏁 kanban</a>
-      
+        <a mat-button routerLink="/blog">🔩 blog</a>      
         <a mat-button href="https://latedrives.etsy.com/" target="_blank">🧰 shop</a>
         <a mat-button routerLink="/profile" *ngIf="!(afAuth.authState | async)">🔑 login</a>
         <a mat-button routerLink="/profile" *ngIf="afAuth.authState | async as user" >

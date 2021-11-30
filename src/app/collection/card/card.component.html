@@ -1,12 +1,14 @@
-
 <button mat-mini-fab [(colorPicker)]="lambocolor" [style.background]="lambocolor">
   <mat-icon>invert_colors</mat-icon>
 </button>
+
+<button mat-raised-button class="center" *ngIf="roleService.canDelete(user)" routerLink="/edit">Edit cards</button>
 
 <div class="grid" *ngIf="cards$ | async as cards; else loading">
   <mat-card class="grid-item-anim" card="card" *ngFor="let card of cards" [routerLink]="['/card', card.id]">
       <mat-card-header>
         <mat-card-title>{{ card.titleCard }}</mat-card-title>
+        <mat-card-title>{{ card.subtitleCard }}</mat-card-title>
       </mat-card-header>
       <img [style.background]="lambocolor" matCardImage [src]="card.imageCard" />
       <mat-card-content>

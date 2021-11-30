@@ -1,27 +1,13 @@
-<div>
-  <mat-tab-group mat-align-tabs="center">
-    <mat-tab>
-        <ng-template mat-tab-label>
-            <mat-icon class="example-tab-icon">apps</mat-icon>Grid
-        </ng-template>
+<main>
+  <div class="center" *ngIf="roleService.canDelete(user)">
+    <h1>Let's create</h1>
+    <h3>keep the dream alive</h3>
+    <app-table></app-table>
+  </div>
 
-        <app-post></app-post>
-
-    </mat-tab>
-    <mat-tab>
-        <ng-template mat-tab-label>
-          <mat-icon class="example-tab-icon">list</mat-icon>List
-        </ng-template>
-
-        <app-table></app-table>
-    </mat-tab>
-  </mat-tab-group>
-</div>
-
-<div>
-  <h1>Blog</h1>
-  <h3>latest posts</h3>
-  <app-post></app-post>
-</div>
-
-
+  <div class="center">
+    <h1 class="mat-display-2">Blog</h1>
+    <h3>latest posts</h3>
+    <app-post></app-post>
+  </div>
+</main>

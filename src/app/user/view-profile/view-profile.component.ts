@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
+
 
 @Component({
   selector: 'app-view-profile',
@@ -11,9 +13,9 @@ import 'firebase/auth';
 })
 export class ViewProfileComponent implements OnInit {
   user: any = {};
-  posts: any[] = [];
+  threads: any[] = [];
 
-  constructor(public activatedRoute: ActivatedRoute) {
+  constructor(public activatedRoute: ActivatedRoute, private afAuth: AngularFireAuth) {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     console.log(id);
 
@@ -35,7 +37,7 @@ export class ViewProfileComponent implements OnInit {
       .get()
       .then((documentSnapshot) => {
         this.user = documentSnapshot.data();
-        this.user.displayName = this.user.firstName + ' ' + this.user.lastName;
+        // this.user.displayName = this.user.firstName + ' ' + this.user.lastName;
         this.user.id = documentSnapshot.id;
         this.user.hobbies = this.user.hobbies.split(',');
         console.log(this.user);
@@ -48,11 +50,13 @@ export class ViewProfileComponent implements OnInit {
   getUsersPosts(id: string) {
     firebase
       .firestore()
-      .collection('posts')
+      .collection('threads')
       .where('owner', '==', id)
       .get()
       .then((data) => {
-        this.posts = data.docs;
+        this.threads = data.docs;
       });
   }
+  
+
 }

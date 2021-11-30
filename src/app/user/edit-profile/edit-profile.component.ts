@@ -1,69 +1,107 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { FileI, UserI } from '../../collection/collection.model';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 import * as firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.scss']
+  styleUrls: ['./edit-profile.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditProfileComponent implements OnInit {
 
-  user: any = {};
+  public image: FileI;
+  public currentImage = '/assets/defaultUser.jpg';
+  public userData$: Observable<firebase.User>;
+  private filePath: string;
   message: string;
 
-  constructor() {
-    this.getProfile();
+  constructor(
+    private afAuth: AngularFireAuth,
+    private storage: AngularFireStorage,
+    private db: AngularFirestore)
+  {
+    this.userData$ = afAuth.authState;    
   }
+
+
+  public profileForm = new FormGroup({
+    displayName: new FormControl('', Validators.required),
+    email: new FormControl({ value: '', disabled: true }, Validators.required),
+    photoURL: new FormControl('', Validators.required),
+  });
 
   ngOnInit() {
+    this.userData$.subscribe(user => {
+      this.initValuesForm(user);
+
+    });
   }
 
-  getProfile(){
-
-    let userId = firebase.auth().currentUser.uid;
-
-    firebase.firestore().collection("users").doc(userId).get().then((documentSnapshot) => {
-
-      this.user = documentSnapshot.data();
-      this.user.displayName = this.user.firstName + " " + this.user.lastName;
-      this.user.id = documentSnapshot.id;
-      console.log(this.user);
-
-    }).catch((error) => {
-      console.log(error);
-    })
-
+  onSaveUser(user: UserI): void {
+    this.preSaveUserProfile(user, this.image);
   }
 
-  update(){
+  private initValuesForm(user: UserI): void {
+    if (user.photoURL) {
+      this.currentImage = user.photoURL;
+    }
 
-    this.message = "Updating Profile...";
+    this.profileForm.patchValue({
+      displayName: user.displayName,
+      email: user.email,
+    });
+  }
 
-    firebase.auth().currentUser.updateProfile({
-      displayName: this.user.displayName, photoURL: this.user.photoUrl
-    }).then(() => {
+  handleImage(image: FileI): void {
+    this.image = image;
+  }
 
-      let userId = firebase.auth().currentUser.uid;
-      firebase.firestore().collection("users").doc(userId).update({
-        first_name: this.user.displayName.split(' ')[0],
-        last_name: this.user.displayName.split(' ')[1],
-        hobbies: this.user.hobbies,
-        interests: this.user.interests,
-        bio: this.user.bio
-      }).then(() => {
+  preSaveUserProfile(user: UserI, image?: FileI): void {
+    if (image) {
+      this.uploadImage(user, image);
+    } else {
+      this.saveUserProfile(user);
+    }
+  }
 
-        this.message = "Profile Updated Successfully.";
+  private uploadImage(user: UserI, image: FileI): void {
+    this.filePath = `profiles/${image.name}`;
+    const fileRef = this.storage.ref(this.filePath);
+    const task = this.storage.upload(this.filePath, image);
+    task.snapshotChanges()
+      .pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(urlImage => {
+            user.photoURL = urlImage;
+            this.saveUserProfile(user);
+          });
+        })
+      ).subscribe();
+  }
+  
+  private saveUserProfile(user: UserI) {
+    this.message = "Updating...";
 
-      }).catch((error) => {
-        console.log(error)
-      })
-
-
-    }).catch((error) => {
-      console.log(error)
+    this.afAuth.auth.currentUser.updateProfile({
+      displayName: user.displayName,
+      photoURL: user.photoURL
     })
+    // Save copy on firestore
+    let userId = this.afAuth.auth.currentUser.uid
+    this.db.collection('users').doc(userId).update({
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+    })
+    .then(() => this.message = "Bio updated successfully.")
+    .catch(err => console.log('Error', err));
 
   }
 

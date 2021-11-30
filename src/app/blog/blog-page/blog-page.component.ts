@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RoleService } from './../../user/role.service';
 
 @Component({
   templateUrl: './blog-page.component.html',
@@ -6,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogPageComponent implements OnInit {
 
-  constructor() { }
+  user;
+  
+  constructor(public roleService: RoleService) { }
 
   ngOnInit(): void {
+    this.roleService.user$.subscribe(user => this.user = user)
   }
 
 }

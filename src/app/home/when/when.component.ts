@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { concatMap, map } from 'rxjs/operators';
 import { Observable, timer } from 'rxjs';
+import { SubscribedService } from './../../services/subscribed.service';
 
 @Component({
   selector: 'app-when',
@@ -14,7 +15,12 @@ export class WhenComponent implements OnInit {
   priceEthUsd$: Observable<number>;
   lamboPrice = 100000;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    public subscribedService: SubscribedService
+  ) {}
+
+  readonly doesNotHaveSubs$ = this.subscribedService.doesNotHaveSubs$
 
   ngOnInit() {
     const btcUsd$ = this.http.get('https://api.coinbase.com/v2/prices/BTC-USD/buy');

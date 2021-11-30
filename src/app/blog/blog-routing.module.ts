@@ -8,8 +8,8 @@ import { BlogPageComponent } from './blog-page/blog-page.component';
 
 const routes: Routes = [
   { path: '', component: BlogPageComponent},
-  { path: 'edit', component: TableComponent, canActivate: [AdminGuard]},
-  { path: 'post/:id', component: DetailsPostComponent},
+  // { path: 'edit', component: TableComponent, canActivate: [AdminGuard]},
+  { path: 'post/:id', pathMatch: 'full', component: DetailsPostComponent},
 ];
 
 @NgModule({

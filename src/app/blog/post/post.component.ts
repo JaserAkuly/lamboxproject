@@ -3,6 +3,7 @@ import { BlogService } from '../blog.service';
 import { PostI } from '../blog.model';
 import { Observable } from 'rxjs';
 
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',

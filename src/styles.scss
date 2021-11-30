@@ -26,7 +26,7 @@ main {
   margin: 1rem;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   .grid-item-anim {
     cursor: pointer;
     transition: transform 500ms ease;
@@ -69,7 +69,8 @@ main {
 
 // Fonts
 @import 'https://fonts.googleapis.com/css?family=Material+Icons+Outlined';
-@import url('https://fonts.googleapis.com/css?family=Syncopate:300,400,500');
+@import url('https://fonts.googleapis.com/css?family=Gruppo:300,400,500');
+@import url('https://fonts.googleapis.com/css?family=Lalezar:300,400,500');
 @import url('https://fonts.googleapis.com/css?family=Corben:300,400,500');
 @import url('https://fonts.googleapis.com/css?family=DM+Sans:300,400,500');
    
@@ -77,10 +78,10 @@ main {
 @media (prefers-color-scheme: dark) { :root{ 
 
 $fontConfig: (
-  display-4: mat-typography-level(112px, 112px, 400, 'Syncopate', -0.0134em),
-  display-3: mat-typography-level(56px, 56px, 400, 'Syncopate', -0.0089em),
-  display-2: mat-typography-level(45px, 48px, 400, 'Syncopate', 0.0000em),
-  display-1: mat-typography-level(34px, 40px, 400, 'Syncopate', 0.0074em),
+  display-4: mat-typography-level(70px, 35px, 400, 'Gruppo', -0.0134em),
+  display-3: mat-typography-level(60px, 30px, 400, 'Gruppo', -0.0089em),
+  display-2: mat-typography-level(50px, 25px, 400, 'Lalezar', 0.0000em),
+  display-1: mat-typography-level(40px, 20px, 400, 'Lalezar', 0.0074em),
   headline: mat-typography-level(24px, 32px, 400, 'Corben', 0.0000em),
   title: mat-typography-level(20px, 32px, 500, 'Corben', 0.0075em),
   subheading-2: mat-typography-level(16px, 28px, 400, 'Corben', 0.0094em),

@@ -25,6 +25,9 @@ import { ViewComponent } from './view/view.component';
     ForumRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+  ],
+  exports: [
+    ThreadListComponent
   ]
 })
 export class ForumModule { }

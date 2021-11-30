@@ -1,5 +1,6 @@
 export interface CardI {
   titleCard: string;
+  subtitleCard: string;
   contentCard: string;
   imageCard?: any;
   id?: string;

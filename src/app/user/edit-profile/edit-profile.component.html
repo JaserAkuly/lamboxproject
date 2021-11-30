@@ -1,35 +1,32 @@
-<mat-card class="form">
-  <mat-form-field appearance="fill">
-    <mat-label>Bio</mat-label>
-    <textarea matInput class="form-control" rows=6 placeholder="Tell us something about yourself..." [(ngModel)]="user.bio"></textarea>
-  </mat-form-field>
-        
-  <mat-form-field>
-    <img [src]="user.photoURL" width="256" height="256" class="img-circle">
-    <mat-label>Name</mat-label>
-    <input matInput type="text" class="form-control" placeholder="First name" [(ngModel)]="user.displayName">
-  </mat-form-field>
+<h4>PROFILE</h4>
 
-  <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input matInput type="email" readonly class="form-control" [(ngModel)]="user.email">
-  </mat-form-field>
-            
+<form (ngSubmit)="onSaveUser(profileForm.value)" [formGroup]="profileForm">
+  <mat-card class="center">
+    <mat-card-header>
+      <div>
+        <p>Change image</p>
+        <img [src]="currentImage" (click)="inputImageProfile.click()" />
+        <input hidden type="file" #inputImageProfile formControlName="photoURL"
+          (change)="handleImage(($event?.target?.files)[0])" />
+      </div>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Your lambo reason</mat-label>
-    <textarea matInput class="form-control" rows=6 placeholder="I want a lambo because..." [(ngModel)]="user.interests"></textarea>
-  </mat-form-field>
+    </mat-card-header>
+    <mat-card-content>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Your Hobbies<small><i>(Comma Separate Each Hobby)</i></small></mat-label>
-    <textarea matInput class="form-control" rows=6 placeholder="Reading, Travelling, Gaming" [(ngModel)]="user.hobbies"></textarea>
-  </mat-form-field>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="displayName">
+      </mat-form-field>
 
-  <button mat-raised-button class="btn btn-warning round pull-right" (click)="update()">Update</button>
-  
-  <div class="alert alert-success fade show pull-left" role="alert" *ngIf="message">
-    {{message}}
-  </div>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" formControlName="email">
+      </mat-form-field>
 
-</mat-card>
+      <button mat-raised-button value="Update">Save</button>
+      
+      <div role="alert" *ngIf="message">{{message}}</div>
+
+    </mat-card-content>
+  </mat-card>
+</form>

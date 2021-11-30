@@ -1,56 +1,18 @@
-<!-- <div class="row">
-  <div class="offset-sm-1 col-sm-10">
-    <div class="card text-blank">
-      <div class="card-body">
-        <div class="card-title text-center">
-          <h3>Profile</h3>
-        </div>
-        <hr />
-        <div class="card-text">
-          <div class="row">
-            <div class="col-sm-3 text-center">
-              <img
-                [src]="user.photoURL"
-                height="256"
-                width="256"
-                class="img-circle"
-              />
-            </div>
+<h1 class="center">Profile</h1>
+<mat-card class="center">
+  <img class="avatar" [src]="user.photoURL || 'assets/defaultUser.jpg'">
+  <mat-card-title>{{ user.displayName }}</mat-card-title>
+  <mat-card-subtitle>{{ user.bio }}</mat-card-subtitle>
+  <!-- <mat-card-subtitle>{{ user.email }}</mat-card-subtitle> -->
+  <mat-card-content>
+    <h2>Lambo reason</h2>
+    <p>{{ user.interests }}</p>
+  </mat-card-content>
+  <h2>Hobbies:</h2>
+  <mat-chip-list>
+    <mat-chip *ngFor="let hobby of user.hobbies">{{ hobby }}</mat-chip>
+  </mat-chip-list>
+</mat-card>
 
-            <div class="col-sm-9">
-              <h1>{{ user.firstName + " " + user.lastName }}</h1>
-
-              <h4>{{ user.email }}</h4>
-
-              <h5>{{ user.bio }}</h5>
-
-              <p>{{ user.interests }}</p>
-
-              <span
-                class="badge badge-pill badge-primary badge-lg ml-3"
-                *ngFor="let hobby of user.hobbies"
-              >
-                {{ hobby }}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
- <div class="row">
-  <div class="offset-sm-1 col-sm-10">
-    <div class="card text-blank">
-      <div class="card-body">
-        <div class="card-title">
-          <h3>Posts by {{ user.first_name }} ({{ posts.length }})</h3>
-        </div>
-        <div class="card-text">
-           <app-post *ngFor="let post of posts" [post]="post"></app-post> 
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
+<h3>Posts by {{ user.displayName }} ({{ threads.length }})</h3>
+<app-thread-list *ngFor="let thread of threads" [thread]="thread"></app-thread-list>

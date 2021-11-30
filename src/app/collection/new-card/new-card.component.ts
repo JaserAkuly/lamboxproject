@@ -14,6 +14,7 @@ export class NewCardComponent implements OnInit {
 
   public newCardForm = new FormGroup({
     titleCard: new FormControl('', Validators.required),
+    subtitleCard: new FormControl('', Validators.required),
     contentCard: new FormControl('', Validators.required),
     tagsCard: new FormControl('', Validators.required),
     imageCard: new FormControl('', Validators.required),

@@ -16,7 +16,7 @@ import { DialogComponent } from './../dialog/dialog.component';
 })
 export class TableComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['titleCard', 'tagsCard', 'actions'];
+  displayedColumns: string[] = ['titleCard','subtitleCard', 'tagsCard', 'actions'];
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;

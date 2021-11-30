@@ -6,17 +6,14 @@ import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-comment-dialog',
   template: `
-    <h1 mat-dialog-title>Your thought about this model</h1>
     <div mat-dialog-content>
-    <p>Is this a good model to buy? Has known issues? add link to citation source</p>
-      <mat-form-field>
-        <input placeholder="I think this model..." matInput [(ngModel)]="data.ask" />
-        <button mat-raised-button color="accent" [mat-dialog-close]="data.ask" cdkFocusInitial><mat-icon>send</mat-icon></button>
+      <h1>Your comment about this post</h1>   
+      <mat-form-field appearance="legacy">
+        <mat-label>comment...</mat-label>
+        <input matInput [(ngModel)]="data.ask" />
+        <mat-icon matSuffix [mat-dialog-close]="data.ask" cdkFocusInitial>send</mat-icon>
+        <mat-hint>your comment is public</mat-hint>
       </mat-form-field>
-    </div>
-    <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Cancel</button>
-      // <button mat-raised-button color="accent" [mat-dialog-close]="data.ask" cdkFocusInitial>🔩 lets go</button>
     </div>
   `
 })

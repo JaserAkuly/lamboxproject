@@ -1,9 +1,12 @@
+img {
+  width: 100%;
+  max-width: 200px;
+  cursor: pointer;
+}
 .img-circle{
-    border-radius:128px;
+  border-radius:128px;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+mat-card {
+  max-width: 400px;
 }

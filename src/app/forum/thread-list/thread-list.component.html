@@ -1,20 +1,20 @@
-<mat-card class="animation" routerLink="thread/{{thread.id}}">
-  <mat-card-header>
-    <img mat-card-avatar routerLink="/{{threadData.owner}}" [src]="user.photoURL || 'assets/defaultUser.jpg'">
-    <mat-card-title>{{ threadData.title }}</mat-card-title>
-    <mat-card-subtitle>{{ threadData.created.toDate() | date: "MMM dd, yyyy" }}</mat-card-subtitle>
-  </mat-card-header>
+  <mat-card class="animation" routerLink="/thread/{{thread.id}}">
+    <mat-card-header>
+      <img mat-card-avatar routerLink="/{{threadData.owner}}" src="assets/defaultUser.jpg">
+      <mat-card-title>{{ threadData.title }}</mat-card-title>
+      <mat-card-subtitle>{{ threadData.created.toDate() | date: "MMM dd, yyyy" }}</mat-card-subtitle>
+    </mat-card-header>
 
-  <!-- <mat-card-subtitle *ngIf="(user && threadData.owner != user.uid) || !user" routerLink="/profile/{{ threadData.owner }}">by: {{ threadData.owner }}</mat-card-subtitle> -->
-  
-  <mat-card-content>
-    <p>{{threadData.content | slice:0:100 }}...</p>
-    <!-- <p>{{ threadContent | slice:0:100 }}...</p> -->
-  </mat-card-content>
+    <!-- <mat-card-subtitle *ngIf="(user && threadData.owner != user.uid) || !user" routerLink="/profile/{{ threadData.owner }}">by: {{ threadData.owner }}</mat-card-subtitle> -->
+    
+    <mat-card-content>
+      <p>{{threadData.content | slice:0:100 }}...</p>
+      <!-- <p>{{ threadContent | slice:0:100 }}...</p> -->
+    </mat-card-content>
 
-  <mat-card-actions>
-    <button mat-button><mat-icon matBadge="15">whatshot</mat-icon>NOS BOOST</button>
-    <button mat-button color="warn" *ngIf="user.uid == threadData.owner" (click)="delete()"><mat-icon>delete</mat-icon></button>
-  </mat-card-actions>
+    <mat-card-actions>
+      <button mat-button><mat-icon matBadge="15">whatshot</mat-icon>NOS BOOST</button>
+      <button mat-button color="warn" *ngIf="user.uid == threadData.owner" (click)="delete()"><mat-icon>delete</mat-icon></button>
+    </mat-card-actions>
 
-</mat-card>
+  </mat-card>
