@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-title>{{thread.title}}</mat-card-title>
+  <mat-card-content>
+    <p>{{thread.content}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <!-- <img mat-card-avatar routerLink="{{threadData.owner}}" [src]="user.photoURL || 'assets/defaultUser.jpg'"> -->
+    <mat-icon mat-card-avatar>user</mat-icon>
+    <button mat-button routerLink="/forum"><mat-icon>edit</mat-icon></button>
+    <button mat-button routerLink="/forum"><mat-icon>keyboard_return</mat-icon></button>
+  </mat-card-actions>
+</mat-card>
+
+<app-responses [threadId]="threadId"></app-responses>

@@ -38,6 +38,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {ColorPickerModule} from 'ngx-color-picker';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ClipboardModule } from '@angular/cdk/clipboard'
+import { NgxEditorModule } from 'ngx-editor';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 const components = [
@@ -65,7 +67,6 @@ const modules = [
   MatProgressSpinnerModule,
   HttpClientModule,
   YouTubePlayerModule,
-
   NgxMaterialTimepickerModule,
   ColorPickerModule,
   MatPaginatorModule,
@@ -79,8 +80,9 @@ const modules = [
   MatGridListModule,
   MatButtonToggleModule,
   MatSlideToggleModule,
-  ClipboardModule
-
+  ClipboardModule,
+  NgxEditorModule,
+  MatProgressBarModule,
 ];
 
 @NgModule({

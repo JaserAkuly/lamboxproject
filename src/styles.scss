@@ -48,6 +48,14 @@ main {
   text-align: center !important;
 }
 
+.animation {
+  cursor: pointer;
+  transition: transform 500ms ease;
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
 /**
 * Generated theme by MatTheme
 * https://mat-theme.web.app

@@ -1,0 +1,16 @@
+<mat-card class="form">
+    <h1>Create Thread</h1>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Thread Title</mat-label>
+      <input matInput type="text" class="form-control" id="title" placeholder="Thread Title" name="title" [(ngModel)]="title"/>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Thread Content</mat-label>
+      <textarea matInput [(ngModel)]="content"></textarea>
+      <!-- <ngx-editor matInput [(ngModel)]="content"></ngx-editor> -->
+    </mat-form-field>
+
+    <button mat-raised-button (click)="createThread()">Submit</button>
+
+</mat-card>

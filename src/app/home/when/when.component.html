@@ -1,0 +1,23 @@
+
+
+<mat-card>
+  <h1>when lambo?</h1>
+  <h3>when the price of one single crypto asset is worth a 100k lambo?</h3>
+
+  <mat-tab-group mat-align-tabs="center">
+
+    <mat-tab label="Bitcoin">
+      <h2>1 BTC = {{ priceBtcUsd$ | async | number: '1.0-0' }} $</h2>
+      <mat-progress-bar color="warn" mode="determinate" [value]="((priceBtcUsd$ | async) / (lamboPrice)) * 100">
+      </mat-progress-bar>
+    </mat-tab>
+    
+    <mat-tab label="Ethereum">
+      <h2>1 ETH is worth {{ priceEthUsd$ | async | number: '1.0-0' }} $</h2>
+      <mat-progress-bar color="warn" mode="determinate" [value]="((priceEthUsd$ | async) / (lamboPrice)) * 100">
+      </mat-progress-bar>  
+    </mat-tab>
+
+  </mat-tab-group>
+
+</mat-card>

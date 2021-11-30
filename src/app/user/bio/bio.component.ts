@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FileI, UserI } from './../../cards/cards.model';
+import { FileI, UserI } from './../../collection/collection.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { AngularFireAuth } from '@angular/fire/auth';

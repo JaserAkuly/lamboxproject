@@ -1,0 +1,19 @@
+<div *ngIf="!(afAuth.authState | async)" >
+  <button class="gradient" mat-raised-button routerLink="/profile">login</button><p>to activate messages</p>
+</div>
+
+<div *ngIf="afAuth.authState | async as user">
+  <button class="gradient" mat-raised-button (click)="openMessageDialog()">🏁 thought</button>
+
+  <h1 class="padding">COMMENTS</h1>
+
+  <mat-list>
+    <div mat-subheader>latest thoughts about this model...</div>
+    <mat-list-item *ngFor="let message of messagesObservable | async" [routerLink]="message.id">
+      <mat-icon mat-list-icon>message</mat-icon>
+      <div mat-line>{{message.ask}}</div>
+      <!--<div mat-line>{{message.createdAt | date}} </div>-->
+      <!--<div mat-line>{{message.userId}}</div>-->
+    </mat-list-item>
+  </mat-list>
+</div>

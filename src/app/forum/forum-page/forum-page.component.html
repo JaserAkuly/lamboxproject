@@ -1,1 +1,11 @@
-<p>forum works!</p>
+<!-- <div class="card mt-5">
+  <img class="card-img-top" [src]="user.photoURL">
+  <div class="card-body">
+    <h4 class="card-title">{{ user.displayName }}</h4>
+    <a routerLink="/edit-profile/{{user.uid}}" 
+    class="btn btn-sm btn-primary">Edit Profile</a>
+  </div>
+</div> -->
+<app-create-thread (threadCreated)="onThreadCreated()"></app-create-thread>
+
+<app-thread-list *ngFor="let thread of threads" [thread]="thread" (onDelete)="onDelete()"></app-thread-list>

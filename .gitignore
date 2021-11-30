@@ -7,10 +7,11 @@ environment.prod.ts
 environment.ts
 ./src/environments/
 /src/environments/
-
+*.log
 .env
 .environment.prod.ts
 .environment.ts
+/e2e
 
 # compiled output
 /dist
