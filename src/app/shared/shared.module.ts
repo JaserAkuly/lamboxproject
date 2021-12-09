@@ -20,6 +20,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { YouTubePlayerModule } from "@angular/youtube-player";
 import { DeleteButtonComponent } from './delete-button/delete-button.component';
+import { FlipCardModule } from './flip-card/flip-card.module';
 
 
 // new
@@ -43,7 +44,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 const components = [
-  ShellComponent, DeleteButtonComponent,
+  ShellComponent, DeleteButtonComponent
 ];
 
 const modules = [
@@ -83,6 +84,7 @@ const modules = [
   ClipboardModule,
   NgxEditorModule,
   MatProgressBarModule,
+  FlipCardModule
 ];
 
 @NgModule({

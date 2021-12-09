@@ -25,4 +25,5 @@ export class CardComponent implements OnInit {
     this.cards$ = this.cardsService.getAllCards();
     this.roleService.user$.subscribe(user => this.user = user)
   }
+
 }
